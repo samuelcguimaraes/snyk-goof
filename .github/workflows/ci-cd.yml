@@ -1,0 +1,19 @@
+name: CI/CD
+on: push
+jobs:  
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "App Built"
+      
+  security:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "App Checked"
+       
+  deploy:
+    needs: [build, security]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "App Deployed"
